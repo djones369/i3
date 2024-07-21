@@ -80,9 +80,9 @@ set $secondMonitor HDMI-0
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
-workspace 3 output $firstMonitor
-workspace 4 output $firstMonitor
-workspace 5 output $firstMonitor
+workspace 3 output $secondMonitor
+workspace 4 output $secondMonitor
+workspace 5 output $secondMonitor
 workspace 6 output $secondMonitor
 workspace 7 output $secondMonitor
 workspace 8 output $secondMonitor
@@ -94,7 +94,6 @@ exec --no-startup-id picom -b
 
 ################### Polkit ######################
 exec --no-startup-id lxpolkit
-
 
 ################### PulseAudio ######################
 
@@ -117,7 +116,6 @@ tiling_drag modifier titlebar
 
 # Load Wallpapers
 exec --no-startup-id nitrogen --restore
-
 
 ################### kill focused window #########################
 bindsym $mod+q kill
@@ -273,65 +271,50 @@ bar {
 # you can find the class with the program xprop
 
 assign [class="mate-terminal|Mate-terminal|Lxterminal"]						                → 1
-assign [class="caja|Caja|pcmanfm|Pcmanfm"]				                   			→ 2
-assign [class="discord|dscord"]					                   				→ 3
-assign [class="Navigator|firefox|google-chrome|Google-chrome|vivaldi-stable|Vivaldi-stable"]			→ 6
-assign [class="pluma|Pluma|mousepad|Mousepad|joplin|Joplin"]							→ 7
+assign [class="discord|dscord"]					                   				→ 2
+assign [class="caja|Caja|pcmanfm|Pcmanfm"]				                   			→ 3
+assign [class="Navigator|firefox|google-chrome|Google-chrome|vivaldi-stable|Vivaldi-stable"]			→ 4
+assign [class="pluma|Pluma|mousepad|Mousepad|joplin|Joplin|code|Code"]						→ 5
 assign [class="kdenlive|kdenlive"] 										→ 8
 
 assign [class="zoom.real|zoom|rustdesk|Rustdesk|virt-manager|Virt-manager"]                    			→ 10
 
+####################################################
+####### Application Shortcuts / Focus Window #######
+####################################################
 
-################### Application Shortcuts ######################
-################### Workspace 1 ###################
+############## Workspace 1  terminal ###############
 
-### terminal ###
-###### Keyboard Shortcuts ######
 bindsym $mod+Return exec lxterminal
 #bindsym $mod+Return exec mate-terminal
-
-###### Focus Window ######
 for_window [class="mate-terminal|lxterminal"] focus
 
-################### Workspace 2 ###################
-
-### File Manager ###
-###### Keyboard Shortcuts ######
-bindsym $mod+Shift+f exec pcmanfm
-
-###### Focus Window ######
-for_window [class="caja|Caja|pcmanfm|Pcmanfm"]; focus
-
-################### Workspace 3 ###################
-
-### Discord, Mumble Etc. ###
-###### Focus Window ######
+######## Workspace 2 Discord, (Mumble Etc.) ########
 for_window [class="discord|discord"] focus
 
-################### Workspace 4 ###################
+################### Workspace 3 ###################
+### File Manager ###
+bindsym $mod+Shift+f exec pcmanfm focus
+for_window [class="pcmanfm|Pcmanfm"]; focus
 
-################### Workspace 5 ###################
+########## Workspace 4 (Web Browsers ) ############
+bindsym $mod+Shift+b exec firefox
+bindsym $mod+Shift+g exec google-chrome|Google-chrome
+for_window [class="Navigator|firefox|google-chrome|Google-chrome|vivaldi-stable|Vivaldi-stable"] focus
+
+################### Workspace 5  (Note Taking / Text Editors) ###################
+for_window [class="Mousepad"] focus
+for_window [class="joplin|Joplin"] focus
+for_window [class="code|Code"] focus
+
 
 ################### Workspace 6 ###################
 
-### Web Browsers ###
-###### Keyboard Shortcuts ######
-bindsym $mod+Shift+b exec firefox
-bindsym $mod+Shift+g exec google-chrome|Google-chrome
-
-### Focus Window ###
-for_window [class="Navigator|firefox|google-chrome|Google-chrome|vivaldi-stable|Vivaldi-stable"] focus
 
 ################### Workspace 7 ###################
 
-### Note Taking / Text Editors ###
-###### Focus Window ######
-for_window [class="pluma|Pluma|mousepad|Mousepad|joplin|Joplin"] focus
+################### Workspace 8 (Media / Graphic Design) ###################
 
-################### Workspace 8 ###################
-
-### Media / Graphic Design ###
-###### Focus Window ######
 for_window [class="kdenlive|kdenlive"] focus
 
 ################### Workspace 9 ###################
@@ -370,7 +353,19 @@ bindsym Print exec "mate-screenshot"
 ################### SETTINGS ######################
 exec --no-startup-id xfce4-settings
 exec --no-startup-id xfce4-taskmanager
- 
 
+################### i3 Gaps ###################### 
+# for_window [all] title_window_icon on
+default_border pixel 3
+default_floating_border pixel 3
+gaps inner 15
+
+smart_borders on
+smart_gaps on
+
+
+
+for_window [title="Application Finder"] floating enable resize set 640 480
+for_window [title="Nitrogen"] floating enable resize set 640 480
 
 
