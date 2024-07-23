@@ -270,7 +270,7 @@ bar {
 # Assign application to start on a specific workspace
 # you can find the class with the program xprop
 
-assign [class="mate-terminal|Mate-terminal|Lxterminal"]						                → 1
+assign [class="mate-terminal|Mate-terminal|Lxterminal|xfce4-terminal|Xfce4-terminal"]						                → 1
 assign [class="discord|dscord"]					                   				→ 2
 assign [class="caja|Caja|pcmanfm|Pcmanfm"]				                   			→ 3
 assign [class="Navigator|firefox|google-chrome|Google-chrome|vivaldi-stable|Vivaldi-stable"]			→ 4
@@ -285,9 +285,9 @@ assign [class="zoom.real|zoom|rustdesk|Rustdesk|virt-manager|Virt-manager"]     
 
 ############## Workspace 1  terminal ###############
 
+bindsym $mod+Shift+Return exec xfce4-terminal|Xfce4-terminal
 bindsym $mod+Return exec lxterminal
-#bindsym $mod+Return exec mate-terminal
-for_window [class="mate-terminal|lxterminal"] focus
+for_window [class="mate-terminal|lxterminal|ptyxis|ptyxis|xfce4-terminal|Xfce4-terminal"] focus
 
 ######## Workspace 2 Discord, (Mumble Etc.) ########
 for_window [class="discord|discord"] focus
@@ -348,7 +348,8 @@ for_window [urgent=latest] focus
 ################### SCREENSHOTS ######################
 
 # bindsym Print exec "flameshot gui"
-bindsym Print exec "mate-screenshot"
+# bindsym Print exec "mate-screenshot"
+bindsym Print exec "xfce4-screenshooter"
 
 ################### SETTINGS ######################
 exec --no-startup-id xfce4-settings
